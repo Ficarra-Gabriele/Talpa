@@ -4,12 +4,18 @@
  */
 package whacamole;
 
+import java.util.ArrayList;
+import javax.swing.JButton;
+
 /**
  *
  * @author ficarra.gabriele
  */
 public class TalpaVisual extends javax.swing.JFrame {
-    
+
+    private ArrayList<Buca> listaBuche = new ArrayList<>();
+    private int punteggio = 0;
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TalpaVisual.class.getName());
 
     /**
@@ -17,6 +23,23 @@ public class TalpaVisual extends javax.swing.JFrame {
      */
     public TalpaVisual() {
         initComponents();
+    }
+
+    private void inizializzaGioco() {
+        JButton[] bottoniForm = {btnBuca0, btnBuca1, btnBuca2, btnBuca3, btnBuca4, btnBuca5, btnBuca6, btnBuca7, btnBuca8};
+
+        for (int i = 0; i < bottoniForm.length; i++) {
+            Buca nuovaBuca = new Buca("Buca: " + i, bottoniForm[i]);
+            listaBuche.add(nuovaBuca);
+            final int index = i;
+            bottoniForm[i].addActionListener(e -> clickSuBuca(index));
+        }
+    }
+
+    private void clickSuBuca(int i) {
+        int puntiOttenuti = listaBuche.get(i).colpita();
+        punteggio += puntiOttenuti;
+        lblPunteggio.setText("Punteggio: " + punteggio);
     }
 
     /**
