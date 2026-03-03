@@ -28,19 +28,92 @@ public class TalpaVisual extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnBuca0 = new javax.swing.JButton();
+        btnBuca1 = new javax.swing.JButton();
+        btnBuca2 = new javax.swing.JButton();
+        btnBuca3 = new javax.swing.JButton();
+        btnBuca4 = new javax.swing.JButton();
+        btnBuca5 = new javax.swing.JButton();
+        btnBuca6 = new javax.swing.JButton();
+        btnBuca7 = new javax.swing.JButton();
+        btnBuca8 = new javax.swing.JButton();
+        lblPunteggio = new javax.swing.JLabel();
+        lblTempo = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(124, 252, 0));
         setPreferredSize(new java.awt.Dimension(900, 1400));
+
+        btnBuca0.setText("jButton1");
+
+        btnBuca1.setText("jButton1");
+
+        btnBuca2.setText("jButton1");
+
+        btnBuca3.setText("jButton1");
+
+        btnBuca4.setText("jButton1");
+
+        btnBuca5.setText("jButton1");
+
+        btnBuca6.setText("jButton1");
+
+        btnBuca7.setText("jButton1");
+
+        btnBuca8.setText("jButton1");
+
+        lblPunteggio.setText("Punteggio: ");
+
+        lblTempo.setText("Timer");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBuca1)
+                    .addComponent(btnBuca0)
+                    .addComponent(btnBuca2))
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBuca3)
+                    .addComponent(btnBuca4)
+                    .addComponent(btnBuca5))
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBuca8)
+                    .addComponent(btnBuca7)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnBuca6)
+                        .addGap(99, 99, 99)
+                        .addComponent(lblPunteggio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(lblTempo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(342, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBuca0)
+                    .addComponent(btnBuca3)
+                    .addComponent(btnBuca6)
+                    .addComponent(lblPunteggio)
+                    .addComponent(lblTempo))
+                .addGap(73, 73, 73)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBuca4)
+                    .addComponent(btnBuca1)
+                    .addComponent(btnBuca7))
+                .addGap(83, 83, 83)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBuca2)
+                    .addComponent(btnBuca5)
+                    .addComponent(btnBuca8))
+                .addContainerGap(258, Short.MAX_VALUE))
         );
 
         pack();
@@ -72,5 +145,16 @@ public class TalpaVisual extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuca0;
+    private javax.swing.JButton btnBuca1;
+    private javax.swing.JButton btnBuca2;
+    private javax.swing.JButton btnBuca3;
+    private javax.swing.JButton btnBuca4;
+    private javax.swing.JButton btnBuca5;
+    private javax.swing.JButton btnBuca6;
+    private javax.swing.JButton btnBuca7;
+    private javax.swing.JButton btnBuca8;
+    private javax.swing.JLabel lblPunteggio;
+    private javax.swing.JLabel lblTempo;
     // End of variables declaration//GEN-END:variables
 }
