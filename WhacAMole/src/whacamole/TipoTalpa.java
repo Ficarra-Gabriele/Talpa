@@ -8,9 +8,9 @@ package whacamole;
  *
  * @author ficarra.gabriele
  */
-public class Classifica {
+enum TipoTalpa {
     
-   public void salvaPunteggio(String nome, int punteggio){
-       
-   }
+    NORMALE,
+    BIANCA;
+    
 }
