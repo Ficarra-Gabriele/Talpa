@@ -11,21 +11,25 @@ import java.util.Timer;
  * @author ficarra.gabriele
  */
 public class Talpa {
-    
+
     TipoTalpa tipo;
-    Timer tempoSu;
-    double frequenzaApparizione;
     int punteggioValore;
-    
-    public void comportamentoSpecifico(){
-        
+
+    public Talpa(TipoTalpa tipo) {
+        this.tipo = tipo;
+        if (tipo == TipoTalpa.BIANCA) {
+            this.punteggioValore = 4;
+        } else {
+            this.punteggioValore = 2;
+        }
     }
-    
-    public void esci(){
-        
+
+    public int getPunteggioValore() {
+        return punteggioValore;
     }
-    
-    public void rientra(){
-        
+
+    public TipoTalpa getTipo() {
+        return tipo;
     }
+
 }

@@ -11,23 +11,31 @@ import javax.swing.JButton;
  * @author ficarra.gabriele
  */
 public class Buca {
-    
-    String idBuca;
-    boolean occupata;
-    JButton bottone;
-    
-    public Buca(String idBuca, JButton button) {
+
+    private int idBuca;
+    private Talpa talpaContenuta;
+
+    public Buca(int idBuca) {
         this.idBuca = idBuca;
-        this.bottone = button;
-        this.occupata = false;
     }
-    
-    public int  colpita(){
-        if (occupata == false){
-            return -2;
+
+    public boolean isOccupata() {
+        if (talpaContenuta != null) {
+            return true;
+        } else {
+            return false;
         }
-        else{
-            return +2;
-        }
+    }
+
+    public void setTalpa(Talpa t) {
+        this.talpaContenuta = t;
+    }
+
+    public Talpa getTalpa() {
+        return talpaContenuta;
+    }
+
+    public void svuota() {
+        this.talpaContenuta = null;
     }
 }

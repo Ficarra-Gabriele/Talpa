@@ -51,13 +51,14 @@ public class TalpaVisual extends javax.swing.JFrame {
         timerGioco = new javax.swing.Timer(1000, e -> {
             secondiRimanenti--;
             lblTempo.setText("Tempo: " + secondiRimanenti);
-            
+
             for (Buca b : listaBuche) {
                 b.occupata = false;
                 b.bottone.setText("");
             }
-            
-            if (secondiRimanenti-- <= 0){
+
+            if (secondiRimanenti-- <= 0) {
+                fineGioco();
                 return;
             }
 
@@ -68,6 +69,11 @@ public class TalpaVisual extends javax.swing.JFrame {
             bucaScelta.bottone.setText("TALPA!");
         });
         timerGioco.start();
+    }
+
+    private void fineGioco() {
+        timerGioco.stop();
+        javax.swing.JOptionPane.showMessageDialog(this, "Punti: " + punteggio);
     }
 
     /**
