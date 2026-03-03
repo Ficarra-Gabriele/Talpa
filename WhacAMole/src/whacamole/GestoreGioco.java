@@ -28,10 +28,13 @@ public class GestoreGioco {
     }
 
     public void selezionaBucaLibera() {
+
         for (Buca singolaBuca : buche) {
             singolaBuca.svuota();
         }
+
         int ind = random.nextInt(buche.size());
+
         TipoTalpa tipoScelto;
         double probabilita = random.nextDouble();
         if (probabilita > 0.8) {
@@ -41,6 +44,8 @@ public class GestoreGioco {
         }
 
         Talpa nuovaTalpa = new Talpa(tipoScelto);
+
+        buche.get(ind).setTalpa(nuovaTalpa);
     }
 
     public int calcolaPunteggio(int idBuca) {

@@ -4,76 +4,80 @@
  */
 package whacamole;
 
+import javax.swing.*;
 import java.util.ArrayList;
-import javax.swing.JButton;
+import java.util.List;
 
-/**
- *
- * @author ficarra.gabriele
- */
 public class TalpaVisual extends javax.swing.JFrame {
 
-    private ArrayList<Buca> listaBuche = new ArrayList<>();
-    private int punteggio = 0;
-    private java.util.Random random = new java.util.Random();
-    private javax.swing.Timer timerGioco;
-    private int secondiRimanenti = 12;
+    private GestoreGioco gestore;
+    private ArrayList<JButton> listaBottoni = new ArrayList<>();
+    private Timer timerPartita;
+    private int secondiRimanenti = 20;
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TalpaVisual.class.getName());
-
-    /**
-     * Creates new form TalpaVisual
-     */
     public TalpaVisual() {
         initComponents();
-        inizializzaGioco();
-        avviaPartita();
+
+        listaBottoni.add(btnBuca0);
+        listaBottoni.add(btnBuca1);
+        listaBottoni.add(btnBuca2);
+        listaBottoni.add(btnBuca3);
+        listaBottoni.add(btnBuca4);
+        listaBottoni.add(btnBuca5);
+        listaBottoni.add(btnBuca6);
+        listaBottoni.add(btnBuca7);
+        listaBottoni.add(btnBuca8);
+
+        this.gestore = new GestoreGioco(listaBottoni.size());
+
+        preparaEventiBottoni();
+        avviaTimerGioco();
     }
 
-    private void inizializzaGioco() {
-        JButton[] bottoniForm = {btnBuca0, btnBuca1, btnBuca2, btnBuca3, btnBuca4, btnBuca5, btnBuca6, btnBuca7, btnBuca8};
-
-        for (int i = 0; i < bottoniForm.length; i++) {
-            Buca nuovaBuca = new Buca("Buca: " + i, bottoniForm[i]);
-            listaBuche.add(nuovaBuca);
-            final int index = i;
-            bottoniForm[i].addActionListener(e -> clickSuBuca(index));
+    private void preparaEventiBottoni() {
+        for (int i = 0; i < listaBottoni.size(); i++) {
+            final int indiceFisso = i;
+            listaBottoni.get(i).addActionListener(e -> {
+                gestore.calcolaPunteggio(indiceFisso);
+                aggiornaInterfaccia();
+            });
         }
     }
 
-    private void clickSuBuca(int i) {
-        int puntiOttenuti = listaBuche.get(i).colpita();
-        punteggio += puntiOttenuti;
-        lblPunteggio.setText("Punteggio: " + punteggio);
+    private void avviaTimerGioco() {
+        timerPartita = new Timer(1000, e -> {
+            secondiRimanenti--;
+            if (secondiRimanenti <= 0) {
+                fineGioco();
+            } else {
+                gestore.selezionaBucaLibera();
+                aggiornaInterfaccia();
+            }
+        });
+        timerPartita.start();
     }
 
-    private void avviaPartita() {
-        timerGioco = new javax.swing.Timer(1000, e -> {
-            secondiRimanenti--;
-            lblTempo.setText("Tempo: " + secondiRimanenti);
+    public void aggiornaInterfaccia() {
+        lblPunteggio.setText("Punteggio: " + gestore.getPunteggioTotale());
+        lblTempo.setText("Tempo: " + secondiRimanenti);
 
-            for (Buca b : listaBuche) {
-                b.occupata = false;
-                b.bottone.setText("");
+        List<Buca> statoBuche = gestore.getBuche();
+
+        for (int i = 0; i < listaBottoni.size(); i++) {
+            Buca bucaLogica = statoBuche.get(i);
+            JButton bottoneGrafico = listaBottoni.get(i);
+
+            if (bucaLogica.isOccupata()) {
+                bottoneGrafico.setText("TALPA!");
+            } else {
+                bottoneGrafico.setText("");
             }
-
-            if (secondiRimanenti-- <= 0) {
-                fineGioco();
-                return;
-            }
-
-            int estratto = random.nextInt(listaBuche.size());
-
-            Buca bucaScelta = listaBuche.get(estratto);
-            bucaScelta.occupata = true;
-            bucaScelta.bottone.setText("TALPA!");
-        });
-        timerGioco.start();
+        }
     }
 
     private void fineGioco() {
-        timerGioco.stop();
-        javax.swing.JOptionPane.showMessageDialog(this, "Punti: " + punteggio);
+        timerPartita.stop();
+        JOptionPane.showMessageDialog(this, "GAME OVER! Punti: " + gestore.getPunteggioTotale());
     }
 
     /**
@@ -180,25 +184,34 @@ public class TalpaVisual extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
                 }
             }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TalpaVisual().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {
+            new TalpaVisual().setVisible(true);
+        });
+    }
+
+    public void trovaBucaOccupataEsempio() {
+        List<Buca> buche = gestore.getBuche();
+        int i = 0;
+        boolean trovata = false;
+        Buca bucaCercata = null;
+
+        while (i < buche.size() && !trovata) {
+            if (buche.get(i).isOccupata()) {
+                bucaCercata = buche.get(i);
+                trovata = true;
+            }
+            i++;
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
