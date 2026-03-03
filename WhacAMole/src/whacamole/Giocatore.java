@@ -9,11 +9,19 @@ package whacamole;
  * @author ficarra.gabriele
  */
 public class Giocatore {
-    
-    String nome;
-    int punteggioAttuale;
-    
-    public void talpaMancata(){
+
+    private String nome;
+    private int punteggioAttuale = 0;
+
+    public void aggiungiPunti(int punti) {
+        this.punteggioAttuale += punti;
+    }
+
+    public int getPunteggio() {
+        return punteggioAttuale;
+    }
+
+    public void talpaMancata() {
         System.out.println("Hai mancato la talpa");
     }
 }

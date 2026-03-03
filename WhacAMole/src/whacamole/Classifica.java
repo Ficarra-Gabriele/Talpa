@@ -11,6 +11,6 @@ package whacamole;
 public class Classifica {
     
    public void salvaPunteggio(String nome, int punteggio){
-       
+      
    }
 }
