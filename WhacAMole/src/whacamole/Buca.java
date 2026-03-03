@@ -13,7 +13,12 @@ public class Buca {
     String idBuca;
     boolean occupata;
     
-    public void colpitaVuota(){
-        
+    public int  colpita(){
+        if (occupata == false){
+            return -2;
+        }
+        else{
+            return +2;
+        }
     }
 }

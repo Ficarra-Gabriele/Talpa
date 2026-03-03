@@ -14,6 +14,6 @@ public class Giocatore {
     int punteggioAttuale;
     
     public void talpaMancata(){
-        System.out.println();
+        System.out.println("Hai mancato la talpa");
     }
 }

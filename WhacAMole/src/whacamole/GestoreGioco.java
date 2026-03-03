@@ -4,6 +4,8 @@
  */
 package whacamole;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 
 /**
@@ -11,21 +13,24 @@ import java.util.Timer;
  * @author ficarra.gabriele
  */
 public class GestoreGioco {
-    
+
     Timer durataSessione;
     int livelloDifficoltà;
     int numeroBuche;
-    
-    public void avviaGioco(){
-        
+    Giocatore g;
+    List<Buca> buche = new ArrayList<>();
+    List<Classifica> registro = new ArrayList<>();
+
+    public void avviaGioco() {
+
+    }
+
+    public void calcolaPunteggio() {
+
+    }
+
+    public void selezionaBuca() {
+
     }
     
-     public void calcolaPunteggio(){
-        
-    }
-     
-      public void selezionaBuca(){
-        
-    }
-      
 }
