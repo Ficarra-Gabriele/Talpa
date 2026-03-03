@@ -15,6 +15,9 @@ public class TalpaVisual extends javax.swing.JFrame {
 
     private ArrayList<Buca> listaBuche = new ArrayList<>();
     private int punteggio = 0;
+    private java.util.Random random = new java.util.Random();
+    private javax.swing.Timer timerGioco;
+    private int secondiRimanenti = 12;
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TalpaVisual.class.getName());
 
@@ -23,6 +26,8 @@ public class TalpaVisual extends javax.swing.JFrame {
      */
     public TalpaVisual() {
         initComponents();
+        inizializzaGioco();
+        avviaPartita();
     }
 
     private void inizializzaGioco() {
@@ -40,6 +45,29 @@ public class TalpaVisual extends javax.swing.JFrame {
         int puntiOttenuti = listaBuche.get(i).colpita();
         punteggio += puntiOttenuti;
         lblPunteggio.setText("Punteggio: " + punteggio);
+    }
+
+    private void avviaPartita() {
+        timerGioco = new javax.swing.Timer(1000, e -> {
+            secondiRimanenti--;
+            lblTempo.setText("Tempo: " + secondiRimanenti);
+            
+            for (Buca b : listaBuche) {
+                b.occupata = false;
+                b.bottone.setText("");
+            }
+            
+            if (secondiRimanenti-- <= 0){
+                return;
+            }
+
+            int estratto = random.nextInt(listaBuche.size());
+
+            Buca bucaScelta = listaBuche.get(estratto);
+            bucaScelta.occupata = true;
+            bucaScelta.bottone.setText("TALPA!");
+        });
+        timerGioco.start();
     }
 
     /**
@@ -111,10 +139,10 @@ public class TalpaVisual extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBuca6)
                         .addGap(99, 99, 99)
-                        .addComponent(lblPunteggio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
+                        .addComponent(lblPunteggio, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
                         .addComponent(lblTempo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(342, Short.MAX_VALUE))
+                .addContainerGap(313, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
