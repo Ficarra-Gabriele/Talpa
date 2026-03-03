@@ -14,7 +14,8 @@ public class WhacAMole {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        TalpaVisual t = new TalpaVisual();
+        t.setVisible(true);
     }
     
 }
