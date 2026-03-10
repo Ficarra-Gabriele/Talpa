@@ -4,6 +4,7 @@
  */
 package whacamole;
 
+import java.awt.Image;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +15,18 @@ public class TalpaVisual extends javax.swing.JFrame {
     private ArrayList<JButton> listaBottoni = new ArrayList<>();
     private Timer timerPartita;
     private int secondiRimanenti = 20;
+    private ImageIcon iconaTalpa;
 
     public TalpaVisual() {
-        initComponents();
-
+        
+        initComponents(); 
+        String path = "img/talpaImg.png";
+        ImageIcon originale = new ImageIcon(path);
+        Image img = originale.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
+        iconaTalpa = new ImageIcon(img);
+        
+        this.getContentPane().setBackground(new java.awt.Color(34, 139, 34));
+        
         listaBottoni.add(btnBuca0);
         listaBottoni.add(btnBuca1);
         listaBottoni.add(btnBuca2);
@@ -29,7 +38,13 @@ public class TalpaVisual extends javax.swing.JFrame {
         listaBottoni.add(btnBuca8);
 
         this.gestore = new GestoreGioco(listaBottoni.size());
-
+        
+        for(JButton btn : listaBottoni){
+            btn.setBackground(new java.awt.Color(139, 69, 19));
+            btn.setForeground(java.awt.Color.WHITE);
+            btn.setBorderPainted(false);
+        }
+        
         preparaEventiBottoni();
         avviaTimerGioco();
     }
@@ -68,9 +83,10 @@ public class TalpaVisual extends javax.swing.JFrame {
             JButton bottoneGrafico = listaBottoni.get(i);
 
             if (bucaLogica.isOccupata()) {
-                bottoneGrafico.setText("TALPA!");
+                bottoneGrafico.setIcon(iconaTalpa);
             } else {
                 bottoneGrafico.setText("");
+                bottoneGrafico.setIcon(null);
             }
         }
     }
