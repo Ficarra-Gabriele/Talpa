@@ -40,10 +40,20 @@ public class TalpaVisual extends javax.swing.JFrame {
         this.gestore = new GestoreGioco(listaBottoni.size());
 
         for (JButton btn : listaBottoni) {
-            btn.setBackground(new java.awt.Color(139, 69, 19));
+            btn.setBackground(new java.awt.Color(101, 67, 33));
             btn.setForeground(java.awt.Color.WHITE);
             btn.setBorderPainted(false);
         }
+
+        btnStart.setBackground(new java.awt.Color(32, 55, 42));
+        btnStart.setForeground(java.awt.Color.WHITE);
+        btnStart.setBorderPainted(false);
+        
+        lblTempo.setBackground(new java.awt.Color(32, 55, 42));
+        lblTempo.setForeground(java.awt.Color.WHITE);
+        
+        lblPunteggio.setBackground(new java.awt.Color(32, 55, 42));
+        lblPunteggio.setForeground(java.awt.Color.WHITE);
 
         preparaEventiBottoni();
         btnStart.addActionListener(e -> riniziaPartita());
@@ -146,53 +156,45 @@ public class TalpaVisual extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(900, 1400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnBuca0.setText("jButton1");
         btnBuca0.setPreferredSize(new java.awt.Dimension(90, 90));
-        getContentPane().add(btnBuca0, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 83, -1, -1));
+        getContentPane().add(btnBuca0, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, -1, -1));
 
-        btnBuca1.setText("jButton1");
         btnBuca1.setPreferredSize(new java.awt.Dimension(90, 90));
-        getContentPane().add(btnBuca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 246, -1, -1));
+        getContentPane().add(btnBuca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, -1, -1));
 
-        btnBuca2.setText("jButton1");
         btnBuca2.setPreferredSize(new java.awt.Dimension(90, 90));
-        getContentPane().add(btnBuca2, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 419, -1, -1));
+        getContentPane().add(btnBuca2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 530, -1, -1));
 
-        btnBuca3.setText("jButton1");
         btnBuca3.setPreferredSize(new java.awt.Dimension(90, 90));
-        getContentPane().add(btnBuca3, new org.netbeans.lib.awtextra.AbsoluteConstraints(221, 83, -1, -1));
+        getContentPane().add(btnBuca3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, -1, -1));
 
-        btnBuca4.setText("jButton1");
         btnBuca4.setPreferredSize(new java.awt.Dimension(90, 90));
-        getContentPane().add(btnBuca4, new org.netbeans.lib.awtextra.AbsoluteConstraints(221, 246, -1, -1));
+        getContentPane().add(btnBuca4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, -1, -1));
 
-        btnBuca5.setText("jButton1");
         btnBuca5.setPreferredSize(new java.awt.Dimension(90, 90));
-        getContentPane().add(btnBuca5, new org.netbeans.lib.awtextra.AbsoluteConstraints(221, 419, -1, -1));
+        getContentPane().add(btnBuca5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, -1, -1));
 
-        btnBuca6.setText("jButton1");
         btnBuca6.setPreferredSize(new java.awt.Dimension(90, 90));
-        getContentPane().add(btnBuca6, new org.netbeans.lib.awtextra.AbsoluteConstraints(372, 83, -1, -1));
+        getContentPane().add(btnBuca6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, -1, -1));
 
-        btnBuca7.setText("jButton1");
         btnBuca7.setPreferredSize(new java.awt.Dimension(90, 90));
-        getContentPane().add(btnBuca7, new org.netbeans.lib.awtextra.AbsoluteConstraints(372, 246, -1, -1));
+        getContentPane().add(btnBuca7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, -1, -1));
 
-        btnBuca8.setText("jButton1");
         btnBuca8.setPreferredSize(new java.awt.Dimension(90, 90));
-        getContentPane().add(btnBuca8, new org.netbeans.lib.awtextra.AbsoluteConstraints(372, 419, -1, -1));
+        getContentPane().add(btnBuca8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 530, -1, -1));
 
+        lblPunteggio.setBackground(new java.awt.Color(255, 255, 0));
         lblPunteggio.setText("Punteggio: ");
-        lblPunteggio.setPreferredSize(new java.awt.Dimension(90, 90));
-        getContentPane().add(lblPunteggio, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 107, -1));
+        lblPunteggio.setPreferredSize(new java.awt.Dimension(70, 90));
+        getContentPane().add(lblPunteggio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 120, -1));
 
         lblTempo.setText("Timer");
-        lblTempo.setPreferredSize(new java.awt.Dimension(90, 90));
-        getContentPane().add(lblTempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 90, 110, 80));
+        lblTempo.setPreferredSize(new java.awt.Dimension(70, 90));
+        getContentPane().add(lblTempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 120, 90));
 
         btnStart.setText("Inizia");
         btnStart.setPreferredSize(new java.awt.Dimension(90, 90));
-        getContentPane().add(btnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 240, -1, -1));
+        getContentPane().add(btnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 190, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
