@@ -11,22 +11,22 @@ import java.util.List;
 
 public class TalpaVisual extends javax.swing.JFrame {
 
-    private  GestoreGioco gestore;
+    private GestoreGioco gestore;
     private ArrayList<JButton> listaBottoni = new ArrayList<>();
     private Timer timerPartita;
     private int secondiRimanenti = 20;
     private ImageIcon iconaTalpa;
 
     public TalpaVisual() {
-        
-        initComponents(); 
+
+        initComponents();
         String path = "img/talpaImg.png";
         ImageIcon originale = new ImageIcon(path);
         Image img = originale.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
         iconaTalpa = new ImageIcon(img);
-        
+
         this.getContentPane().setBackground(new java.awt.Color(34, 139, 34));
-        
+
         listaBottoni.add(btnBuca0);
         listaBottoni.add(btnBuca1);
         listaBottoni.add(btnBuca2);
@@ -38,15 +38,15 @@ public class TalpaVisual extends javax.swing.JFrame {
         listaBottoni.add(btnBuca8);
 
         this.gestore = new GestoreGioco(listaBottoni.size());
-        
-        for(JButton btn : listaBottoni){
+
+        for (JButton btn : listaBottoni) {
             btn.setBackground(new java.awt.Color(139, 69, 19));
             btn.setForeground(java.awt.Color.WHITE);
             btn.setBorderPainted(false);
         }
-        
+
         preparaEventiBottoni();
-        avviaTimerGioco();
+        btnStart.addActionListener(e -> riniziaPartita());
     }
 
     private void preparaEventiBottoni() {
@@ -93,7 +93,30 @@ public class TalpaVisual extends javax.swing.JFrame {
 
     private void fineGioco() {
         timerPartita.stop();
+        btnStart.setText("Gioca Ancora");
+        String nome = JOptionPane.showInputDialog(this, "Inserisci il tuo nome:");
+        gestore.registraRisultato(nome);
+
         JOptionPane.showMessageDialog(this, "Punti: " + gestore.getPunteggioTotale());
+    }
+
+    private void riniziaPartita() {
+
+        if (timerPartita != null) {
+            timerPartita.stop();
+        }
+
+        this.secondiRimanenti = 20;
+        this.gestore = new GestoreGioco(listaBottoni.size());
+
+        for (JButton btn : listaBottoni) {
+            btn.setIcon(null);
+            btn.setText("");
+            btn.setBackground(new java.awt.Color(139, 69, 19));
+        }
+        btnStart.setText("Ricomincia");
+        avviaTimerGioco();
+        aggiornaInterfaccia();
     }
 
     /**
@@ -116,6 +139,7 @@ public class TalpaVisual extends javax.swing.JFrame {
         btnBuca8 = new javax.swing.JButton();
         lblPunteggio = new javax.swing.JLabel();
         lblTempo = new javax.swing.JLabel();
+        btnStart = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(124, 252, 0));
@@ -159,15 +183,21 @@ public class TalpaVisual extends javax.swing.JFrame {
         getContentPane().add(btnBuca8, new org.netbeans.lib.awtextra.AbsoluteConstraints(372, 419, -1, -1));
 
         lblPunteggio.setText("Punteggio: ");
-        getContentPane().add(lblPunteggio, new org.netbeans.lib.awtextra.AbsoluteConstraints(561, 119, 107, -1));
+        lblPunteggio.setPreferredSize(new java.awt.Dimension(90, 90));
+        getContentPane().add(lblPunteggio, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 107, -1));
 
         lblTempo.setText("Timer");
-        getContentPane().add(lblTempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(697, 119, 70, -1));
+        lblTempo.setPreferredSize(new java.awt.Dimension(90, 90));
+        getContentPane().add(lblTempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 90, 110, 80));
+
+        btnStart.setText("Inizia");
+        btnStart.setPreferredSize(new java.awt.Dimension(90, 90));
+        getContentPane().add(btnStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 240, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuca0;
     private javax.swing.JButton btnBuca1;
@@ -178,6 +208,7 @@ public class TalpaVisual extends javax.swing.JFrame {
     private javax.swing.JButton btnBuca6;
     private javax.swing.JButton btnBuca7;
     private javax.swing.JButton btnBuca8;
+    private javax.swing.JButton btnStart;
     private javax.swing.JLabel lblPunteggio;
     private javax.swing.JLabel lblTempo;
     // End of variables declaration//GEN-END:variables

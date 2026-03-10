@@ -68,4 +68,8 @@ public class GestoreGioco {
     public int getPunteggioTotale() {
         return giocatore.getPunteggio();
     }
+
+    public void registraRisultato(String nome) {
+        registro.salvaPunteggio(nome, giocatore.getPunteggio());
+    }
 }
