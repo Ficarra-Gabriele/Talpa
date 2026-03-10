@@ -56,7 +56,7 @@ public class GestoreGioco {
             b.svuota();
             return punti;
         } else {
-            giocatore.talpaMancata();
+            giocatore.aggiungiPunti(-2);
             return -2;
         }
     }

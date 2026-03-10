@@ -14,7 +14,15 @@ public class Giocatore {
     private int punteggioAttuale = 0;
 
     public void aggiungiPunti(int punti) {
+        if (punteggioAttuale >= 0){
+            
         this.punteggioAttuale += punti;
+        
+        }
+        
+        else{
+            System.err.println("Non puoi andare sotto zero");
+        }
     }
 
     public int getPunteggio() {
