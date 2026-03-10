@@ -5,7 +5,6 @@
 package whacamole;
 
 import java.util.*;
-import javax.swing.Timer;
 
 /**
  *

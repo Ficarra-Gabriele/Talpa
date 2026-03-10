@@ -4,8 +4,6 @@
  */
 package whacamole;
 
-import java.util.Timer;
-
 /**
  *
  * @author ficarra.gabriele
@@ -28,7 +26,7 @@ public class Talpa {
         return punteggioValore;
     }
 
-    public TipoTalpa getTipo() {
+    public TipoTalpa getTipo() { 
         return tipo;
     }
 

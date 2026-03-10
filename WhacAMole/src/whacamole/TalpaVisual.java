@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TalpaVisual extends javax.swing.JFrame {
 
-    private GestoreGioco gestore;
+    private  GestoreGioco gestore;
     private ArrayList<JButton> listaBottoni = new ArrayList<>();
     private Timer timerPartita;
     private int secondiRimanenti = 20;
@@ -77,7 +77,7 @@ public class TalpaVisual extends javax.swing.JFrame {
 
     private void fineGioco() {
         timerPartita.stop();
-        JOptionPane.showMessageDialog(this, "GAME OVER! Punti: " + gestore.getPunteggioTotale());
+        JOptionPane.showMessageDialog(this, "Punti: " + gestore.getPunteggioTotale());
     }
 
     /**
@@ -104,116 +104,54 @@ public class TalpaVisual extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(124, 252, 0));
         setPreferredSize(new java.awt.Dimension(900, 1400));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnBuca0.setText("jButton1");
+        btnBuca0.setPreferredSize(new java.awt.Dimension(90, 90));
+        getContentPane().add(btnBuca0, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 83, -1, -1));
 
         btnBuca1.setText("jButton1");
+        btnBuca1.setPreferredSize(new java.awt.Dimension(90, 90));
+        getContentPane().add(btnBuca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 246, -1, -1));
 
         btnBuca2.setText("jButton1");
+        btnBuca2.setPreferredSize(new java.awt.Dimension(90, 90));
+        getContentPane().add(btnBuca2, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 419, -1, -1));
 
         btnBuca3.setText("jButton1");
+        btnBuca3.setPreferredSize(new java.awt.Dimension(90, 90));
+        getContentPane().add(btnBuca3, new org.netbeans.lib.awtextra.AbsoluteConstraints(221, 83, -1, -1));
 
         btnBuca4.setText("jButton1");
+        btnBuca4.setPreferredSize(new java.awt.Dimension(90, 90));
+        getContentPane().add(btnBuca4, new org.netbeans.lib.awtextra.AbsoluteConstraints(221, 246, -1, -1));
 
         btnBuca5.setText("jButton1");
+        btnBuca5.setPreferredSize(new java.awt.Dimension(90, 90));
+        getContentPane().add(btnBuca5, new org.netbeans.lib.awtextra.AbsoluteConstraints(221, 419, -1, -1));
 
         btnBuca6.setText("jButton1");
+        btnBuca6.setPreferredSize(new java.awt.Dimension(90, 90));
+        getContentPane().add(btnBuca6, new org.netbeans.lib.awtextra.AbsoluteConstraints(372, 83, -1, -1));
 
         btnBuca7.setText("jButton1");
+        btnBuca7.setPreferredSize(new java.awt.Dimension(90, 90));
+        getContentPane().add(btnBuca7, new org.netbeans.lib.awtextra.AbsoluteConstraints(372, 246, -1, -1));
 
         btnBuca8.setText("jButton1");
+        btnBuca8.setPreferredSize(new java.awt.Dimension(90, 90));
+        getContentPane().add(btnBuca8, new org.netbeans.lib.awtextra.AbsoluteConstraints(372, 419, -1, -1));
 
         lblPunteggio.setText("Punteggio: ");
+        getContentPane().add(lblPunteggio, new org.netbeans.lib.awtextra.AbsoluteConstraints(561, 119, 107, -1));
 
         lblTempo.setText("Timer");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBuca1)
-                    .addComponent(btnBuca0)
-                    .addComponent(btnBuca2))
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBuca3)
-                    .addComponent(btnBuca4)
-                    .addComponent(btnBuca5))
-                .addGap(61, 61, 61)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBuca8)
-                    .addComponent(btnBuca7)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBuca6)
-                        .addGap(99, 99, 99)
-                        .addComponent(lblPunteggio, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(lblTempo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(313, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuca0)
-                    .addComponent(btnBuca3)
-                    .addComponent(btnBuca6)
-                    .addComponent(lblPunteggio)
-                    .addComponent(lblTempo))
-                .addGap(73, 73, 73)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuca4)
-                    .addComponent(btnBuca1)
-                    .addComponent(btnBuca7))
-                .addGap(83, 83, 83)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuca2)
-                    .addComponent(btnBuca5)
-                    .addComponent(btnBuca8))
-                .addContainerGap(258, Short.MAX_VALUE))
-        );
+        getContentPane().add(lblTempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(697, 119, 70, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                }
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        java.awt.EventQueue.invokeLater(() -> {
-            new TalpaVisual().setVisible(true);
-        });
-    }
-
-    public void trovaBucaOccupataEsempio() {
-        List<Buca> buche = gestore.getBuche();
-        int i = 0;
-        boolean trovata = false;
-        Buca bucaCercata = null;
-
-        while (i < buche.size() && !trovata) {
-            if (buche.get(i).isOccupata()) {
-                bucaCercata = buche.get(i);
-                trovata = true;
-            }
-            i++;
-        }
-    }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuca0;
     private javax.swing.JButton btnBuca1;

@@ -4,8 +4,6 @@
  */
 package whacamole;
 
-import javax.swing.JButton;
-
 /**
  *
  * @author ficarra.gabriele
@@ -37,5 +35,15 @@ public class Buca {
 
     public void svuota() {
         this.talpaContenuta = null;
+    }
+    
+    public int getOccupazione(){
+        
+        if (isOccupata() == true){
+            return +2;
+        }
+        else{
+            return -2;
+        }
     }
 }
