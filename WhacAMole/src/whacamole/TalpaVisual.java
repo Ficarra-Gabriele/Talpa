@@ -13,122 +13,69 @@ public class TalpaVisual extends javax.swing.JFrame {
 
     private GestoreGioco gestore;
     private ArrayList<JButton> listaBottoni = new ArrayList<>();
-    private Timer timerPartita;
+    private Thread threadLogica;
+    private Timer timerGrafico;
     private int secondiRimanenti = 20;
     private ImageIcon iconaTalpa;
 
     public TalpaVisual() {
-
         initComponents();
         String path = "img/talpaImg.png";
-        ImageIcon originale = new ImageIcon(path);
-        Image img = originale.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
-        iconaTalpa = new ImageIcon(img);
-
-        this.getContentPane().setBackground(new java.awt.Color(34, 139, 34));
-
-        listaBottoni.add(btnBuca0);
-        listaBottoni.add(btnBuca1);
-        listaBottoni.add(btnBuca2);
-        listaBottoni.add(btnBuca3);
-        listaBottoni.add(btnBuca4);
-        listaBottoni.add(btnBuca5);
-        listaBottoni.add(btnBuca6);
-        listaBottoni.add(btnBuca7);
-        listaBottoni.add(btnBuca8);
+        iconaTalpa = new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH));
+        
+        listaBottoni.add(btnBuca0); listaBottoni.add(btnBuca1); listaBottoni.add(btnBuca2);
+        listaBottoni.add(btnBuca3); listaBottoni.add(btnBuca4); listaBottoni.add(btnBuca5);
+        listaBottoni.add(btnBuca6); listaBottoni.add(btnBuca7); listaBottoni.add(btnBuca8);
 
         this.gestore = new GestoreGioco(listaBottoni.size());
-
-        for (JButton btn : listaBottoni) {
-            btn.setBackground(new java.awt.Color(101, 67, 33));
-            btn.setForeground(java.awt.Color.WHITE);
-            btn.setBorderPainted(false);
-        }
-
-        btnStart.setBackground(new java.awt.Color(32, 55, 42));
-        btnStart.setForeground(java.awt.Color.WHITE);
-        btnStart.setBorderPainted(false);
-        
-        lblTempo.setBackground(new java.awt.Color(32, 55, 42));
-        lblTempo.setForeground(java.awt.Color.WHITE);
-        
-        lblPunteggio.setBackground(new java.awt.Color(32, 55, 42));
-        lblPunteggio.setForeground(java.awt.Color.WHITE);
-
         preparaEventiBottoni();
         btnStart.addActionListener(e -> riniziaPartita());
     }
 
     private void preparaEventiBottoni() {
         for (int i = 0; i < listaBottoni.size(); i++) {
-            final int indiceFisso = i;
+            final int indice = i;
             listaBottoni.get(i).addActionListener(e -> {
-                gestore.calcolaPunteggio(indiceFisso);
+                gestore.calcolaPunteggio(indice);
                 aggiornaInterfaccia();
             });
         }
     }
 
-    private void avviaTimerGioco() {
-        timerPartita = new Timer(1000, e -> {
+    private void riniziaPartita() {
+        secondiRimanenti = 20;
+        gestore = new GestoreGioco(listaBottoni.size());
+        gestore.setInCorso(true);
+        
+        threadLogica = new Thread(gestore);
+        threadLogica.start();
+
+        timerGrafico = new Timer(1000, e -> {
             secondiRimanenti--;
             if (secondiRimanenti <= 0) {
                 fineGioco();
-            } else {
-                gestore.selezionaBucaLibera();
-                aggiornaInterfaccia();
             }
+            aggiornaInterfaccia();
         });
-        timerPartita.start();
+        timerGrafico.start();
     }
 
     public void aggiornaInterfaccia() {
         lblPunteggio.setText("Punteggio: " + gestore.getPunteggioTotale());
         lblTempo.setText("Tempo: " + secondiRimanenti);
-
         List<Buca> statoBuche = gestore.getBuche();
-
         for (int i = 0; i < listaBottoni.size(); i++) {
-            Buca bucaLogica = statoBuche.get(i);
-            JButton bottoneGrafico = listaBottoni.get(i);
-
-            if (bucaLogica.isOccupata()) {
-                bottoneGrafico.setIcon(iconaTalpa);
-            } else {
-                bottoneGrafico.setText("");
-                bottoneGrafico.setIcon(null);
-            }
+            listaBottoni.get(i).setIcon(statoBuche.get(i).isOccupata() ? iconaTalpa : null);
         }
     }
 
     private void fineGioco() {
-        timerPartita.stop();
-        btnStart.setText("Gioca Ancora");
+        gestore.setInCorso(false);
+        timerGrafico.stop();
         String nome = JOptionPane.showInputDialog(this, "Inserisci il tuo nome:");
         gestore.registraRisultato(nome);
-
         JOptionPane.showMessageDialog(this, "Punti: " + gestore.getPunteggioTotale());
     }
-
-    private void riniziaPartita() {
-
-        if (timerPartita != null) {
-            timerPartita.stop();
-        }
-
-        this.secondiRimanenti = 20;
-        this.gestore = new GestoreGioco(listaBottoni.size());
-
-        for (JButton btn : listaBottoni) {
-            btn.setIcon(null);
-            btn.setText("");
-            btn.setBackground(new java.awt.Color(139, 69, 19));
-        }
-        btnStart.setText("Ricomincia");
-        avviaTimerGioco();
-        aggiornaInterfaccia();
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

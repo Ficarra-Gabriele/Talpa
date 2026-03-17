@@ -17,33 +17,42 @@ public class Buca {
         this.idBuca = idBuca;
     }
 
-    public boolean isOccupata() {
-        if (talpaContenuta != null) {
-            return true;
-        } else {
-            return false;
+    public synchronized boolean isOccupata() {
+        return talpaContenuta != null;
+    }
+
+    public synchronized void setTalpa(Talpa t) {
+        while (talpaContenuta != null) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
-    }
-
-    public void setTalpa(Talpa t) {
         this.talpaContenuta = t;
+        notifyAll();
     }
 
-    public Talpa getTalpa() {
-        return talpaContenuta;
-    }
-
-    public void svuota() {
+    public synchronized Talpa prendiTalpa() {
+        while (talpaContenuta == null) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        Talpa t = talpaContenuta;
         this.talpaContenuta = null;
+        notifyAll();
+        return t;
     }
     
-    public int getOccupazione(){
-        
-        if (isOccupata() == true){
-            return +2;
-        }
-        else{
-            return -2;
-        }
+    public synchronized void svuota() {
+        this.talpaContenuta = null;
+        notifyAll();
+    }
+
+    public int getIdBuca() {
+        return idBuca;
     }
 }
